@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             //$prodcompany_id->
             $table->string('name');
-            $table->string('pg rating');
+            $table->string('description');
+            $table->string('pg_rating');
             $table->string('rating');
             $table->integer('budget');
             $table->string('release_date');
             $table->integer('running_time');
+            $table->string('image_id');
             $table->timestamps();
         });
     }
