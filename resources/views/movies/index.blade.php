@@ -12,16 +12,18 @@
                     <h3 class="font-semibold text-lg mb-4">List of Movies:</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach ($movies as $movie)
-                            <x-movie-card
-                                :name="$movie->name"
-                                :description="$movie->description"
-                                :pg_rating="$movie->pg_rating"
-                                :rating="$movie->rating"
-                                :budget="$movie->budget"
-                                :release_date="$movie->release_date"
-                                :running_time="$movie->running_time"
-                                :image_id="$movie->image_id"
-                            />
+                            <a href="{{ route('movies.show',  $movie) }}">
+                                <x-movie-card
+                                    :name="$movie->name"
+                                    :description="$movie->description"
+                                    :pg_rating="$movie->pg_rating"
+                                    :rating="$movie->rating"
+                                    :budget="$movie->budget"
+                                    :release_date="$movie->release_date"
+                                    :running_time="$movie->running_time"
+                                    :image_id="$movie->image_id"
+                                />
+                            </a> 
                         @endforeach
                     </div>
                 </div>
