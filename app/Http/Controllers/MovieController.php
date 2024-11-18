@@ -34,16 +34,17 @@ class MovieController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required|max:500',
-            'pg_rating' => 'required|intiger',
-            'rating' => 'required|float',
-            'budget' => 'required|intiger',
-            'release_date' => 'required|intiger',
-            'running_time' => 'required|intiger',
+            'pg_rating' => 'required|integer',
+            'rating' => 'required|numeric',
+            'budget' => 'required|integer',
+            'release_date' => 'required|integer',
+            'running_time' => 'required|integer',
             'image_id' => 'required|image|mimes:jpeg,png,jpg,jiff|max:4096',
         ]);
 
         // This checks if the image is uploaded and if it can handle it
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image_id')) {
+            
             $imageName = time().'.'.$request->image->extension();
             $request->image->move(public_path('images/movies'), $imageName);
         }
