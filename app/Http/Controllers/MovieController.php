@@ -32,14 +32,14 @@ class MovieController extends Controller
     {
         //Validate input
         $request->validate([
-            'name' => 'reqired',
-            'description' => 'reqired|max:500',
-            'pg_rating' => 'reqired|intiger',
-            'rating' => 'reqired|float',
-            'budget' => 'reqired|intiger',
-            'release_date' => 'reqired|intiger',
-            'running_time' => 'reqired|intiger',
-            'image_id' => 'reqired|image|mimes:jpeg,png,jpg,jiff|max:2048',
+            'name' => 'required',
+            'description' => 'required|max:500',
+            'pg_rating' => 'required|intiger',
+            'rating' => 'required|float',
+            'budget' => 'required|intiger',
+            'release_date' => 'required|intiger',
+            'running_time' => 'required|intiger',
+            'image_id' => 'required|image|mimes:jpeg,png,jpg,jiff|max:4096',
         ]);
 
         // This checks if the image is uploaded and if it can handle it

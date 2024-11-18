@@ -2,7 +2,7 @@
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
-    @if ($method === 'PUT' || $method='PATCH')
+    @if ($method === 'PUT' || $method === 'PATCH')
         @method($method)
     @endif
     
