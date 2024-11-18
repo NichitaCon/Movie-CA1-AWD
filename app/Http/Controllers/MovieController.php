@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -29,7 +30,40 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validate input
+        $request->validate([
+            'name' => 'reqired',
+            'description' => 'reqired|max:500',
+            'pg_rating' => 'reqired|intiger',
+            'rating' => 'reqired|float',
+            'budget' => 'reqired|intiger',
+            'release_date' => 'reqired|intiger',
+            'running_time' => 'reqired|intiger',
+            'image_id' => 'reqired|image|mimes:jpeg,png,jpg,jiff|max:2048',
+        ]);
+
+        // This checks if the image is uploaded and if it can handle it
+        if ($request->hasFile('image')) {
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images/movies'), $imageName);
+        }
+
+        // Creates a new movie record in the db
+        Movie::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'pg_rating' => $request->pg_rating,
+            'rating' => $request->rating,
+            'budget' => $request->budget,
+            'release_date' => $request->release_date,
+            'running_time' => $request->running_time,
+            'image_id' => $imageName,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
+        // Redirect to index page with a success message
+        return to_route('movies.index')->with('success', 'Movie created successfully!!');
     }
 
     /**
