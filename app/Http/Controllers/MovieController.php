@@ -44,9 +44,9 @@ class MovieController extends Controller
 
         // This checks if the image is uploaded and if it can handle it
         if ($request->hasFile('image_id')) {
-            
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('images/movies'), $imageName);
+
+            $imageName = time().'.'.$request->file('image_id')->extension();
+            $request->file('image_id')->move(public_path('images/movies'), $imageName);
         }
 
         // Creates a new movie record in the db
