@@ -80,7 +80,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+        return view('movies.edit', compact('movie'));
     }
 
     /**
@@ -88,7 +88,50 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        // Validate the incoming request
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required|max:500',
+            'pg_rating' => 'required|integer',
+            'rating' => 'required|numeric',
+            'budget' => 'required|integer',
+            'release_date' => 'required|integer',
+            'running_time' => 'required|integer',
+            'image_id' => 'nullable|image|mimes:jpeg,png,jpg,jiff|max:4096', // image is optional on update
+        ]);
+    
+        // If a new image is uploaded, handle the upload and update the image file path
+        if ($request->hasFile('image_id')) {
+            // Delete the old image from storage if exists
+            if ($movie->image_id) {
+                $oldImagePath = public_path('images/movies/' . $movie->image_id);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+    
+            // Upload the new image
+            $imageName = time() . '.' . $request->file('image_id')->extension();
+            $request->file('image_id')->move(public_path('images/movies'), $imageName);
+        } else {
+            // Keep the old image if no new one is uploaded
+            $imageName = $movie->image_id;
+        }
+    
+        // Update the movie record
+        $movie->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'pg_rating' => $request->pg_rating,
+            'rating' => $request->rating,
+            'budget' => $request->budget,
+            'release_date' => $request->release_date,
+            'running_time' => $request->running_time,
+            'image_id' => $imageName, // Update the image if a new one was uploaded
+        ]);
+    
+        // Redirect to the index page with a success message
+        return redirect()->route('movies.index')->with('success', 'Movie updated successfully!');
     }
 
     /**

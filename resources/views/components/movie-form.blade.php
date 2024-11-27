@@ -1,4 +1,4 @@
-@props(['action', 'method'])
+@props(['action', 'method', 'movie'])
 
 <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -14,9 +14,10 @@
             id="name"
             value="{{ old('name', $movie->name ?? '') }}"
             required
-            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"/>
+            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+        />
         @error('name')
-        <p class="text-sm text-red-600">{{ $message }}</p>
+            <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
 
@@ -30,7 +31,7 @@
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"/>
         @error('description')
-        <p class="text-sm text-red-600">{{ $message }}</p>
+            <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
 
@@ -44,7 +45,7 @@
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"/>
         @error('rating')
-        <p class="text-sm text-red-600">{{ $message }}</p>
+            <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
 
@@ -58,7 +59,7 @@
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"/>
         @error('pg_rating')
-        <p class="text-sm text-red-600">{{ $message }}</p>
+            <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
 
@@ -72,7 +73,7 @@
             required
             class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"/>
         @error('budget')
-        <p class="text-sm text-red-600">{{ $message }}</p>
+            <p class="text-sm text-red-600">{{ $message }}</p>
         @enderror
     </div>
 
