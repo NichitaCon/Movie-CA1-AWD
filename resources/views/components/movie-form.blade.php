@@ -121,7 +121,7 @@
 
     @isset($movie->image_id)
         <div class="mb-4">
-            <img src="{{ asset($movie->image_id)}}" alt="Movie image" class="w-24 h-32 object-cover">
+            <img src="{{ asset('images/movies/' . $movie->image_id)}}" alt="Movie image" class="w-24 h-32 object-cover">
         </div>
     @endisset
 
