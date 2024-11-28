@@ -139,6 +139,10 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        // Delete the movie record from the database
+        $movie->delete();
+    
+        // Redirect back to the movies index page with a success message
+        return redirect()->route('movies.index')->with('success', 'Movie deleted successfully!');
     }
 }

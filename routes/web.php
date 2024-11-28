@@ -24,5 +24,6 @@ Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.sh
 Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movies.edit');
 Route::put('movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
+Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
 
 require __DIR__.'/auth.php';
