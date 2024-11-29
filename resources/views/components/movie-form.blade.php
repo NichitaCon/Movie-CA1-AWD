@@ -64,7 +64,7 @@
     </div>
 
     <div class="mb-4">
-        <label for="budget" class="block text-sm text-gray-700">Budget</label>
+        <label for="budget" class="block text-sm text-gray-700">Budget (In Millions)</label>
         <input
             type="text"
             name="budget"

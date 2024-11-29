@@ -90,13 +90,13 @@ class MovieController extends Controller
     {
         // Validate the incoming request
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:30',
             'description' => 'required|max:500',
-            'pg_rating' => 'required|integer',
-            'rating' => 'required|numeric',
+            'pg_rating' => 'required|integer|min:0|max:18',
+            'rating' => 'required|numeric|min:0|max:5',
             'budget' => 'required|integer',
-            'release_date' => 'required|integer',
-            'running_time' => 'required|integer',
+            'release_date' => 'required|integer|min:1900|max:2024',
+            'running_time' => 'required|integer|min:1|max:300',
             'image_id' => 'nullable|image|mimes:jpeg,png,jpg,jiff|max:4096', // image is optional on update
         ]);
     
