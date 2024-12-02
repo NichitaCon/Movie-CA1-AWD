@@ -32,17 +32,17 @@
                                 </a>
                                 
                                 <!-- Edit and delete buttons container -->
-                                <div class="mt-4 flex w-full justify-around space-x-2 mt-auto">
+                                <div class="mt-4 flex w-full justify-start space-x-2 mt-auto">
 
                                     <!-- Edit button/ Used the Movies object id so the right movie is edited -->
-                                    <a href="{{ route('movies.edit', $movie) }}" class="text-gray-600 bg-orange-300 hover:bg-orange-700 font-bold py-2 px-4 transition duration-300 rounded">
+                                    <a href="{{ route('movies.edit', $movie) }}" title="Edit" class="w-10 h-10 rounded-full flex items-center justify-center bg-orange-100 hover:bg-orange-400 border border-orange-200 hover:border-orange-400 transform hover:rotate-[-15deg] transition duration-300 ">
                                         <i class="fa-solid fa-pencil"></i>
                                     </a>
                                     
                                     <form action="{{ route('movies.destroy', $movie)}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this movie?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-gray-600 font-bold py-2 px-4 transition duration-300 rounded">
+                                        <button type="submit" title="Delete" class="w-10 h-10 rounded-full flex items-center justify-center bg-red-100 hover:bg-red-400 border border-red-200 hover:border-red-400 transform hover:rotate-[15deg] transition duration-300 ">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
