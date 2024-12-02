@@ -28,7 +28,7 @@
     </div>
 
     <!-- PG rating -->
-    <p class="text-gray-600 mt-1">Rated PG-{{ $pg_rating }}</p>
+    <p class="text-gray-600 mt-1">Age Rated-{{ $pg_rating }}</p>
 
 
 </div>

@@ -10,14 +10,14 @@
     </x-alert-success>
 
     <div class="py-12">
-        <div class="w-4/5 mx-auto sm:px-6 lg:px-8">
+        <div class="w-6/6 mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+                <div class="p-6 pb-9 text-gray-900">
                     <h3 class="font-semibold text-lg mb-4">List of Movies:</h3>
                     <div class="flex flex-wrap justify-center gap-6">
                         <!-- Loop that goes through each movie in the database -->
                         @foreach ($movies as $movie)
-                            <div class="border rounded-lg shadow-md p-6 flex flex-col max-w-md bg-white hover:shadow-lg transition duration-300">
+                            <div class="border rounded-lg shadow-md p-6 flex flex-col w-1/5 bg-white hover:shadow-lg transition duration-300">
                                 <a href="{{ route('movies.show',  $movie) }}">
                                     <x-movie-card
                                         :name="$movie->name"
