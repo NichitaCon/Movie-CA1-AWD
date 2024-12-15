@@ -21,7 +21,11 @@ class MovieController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
+        // Security in place for regular users to not be able to access create page
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('books.index')->with('error', 'Access denied. >:(');
+        }
         return view ('movies.create');
     }
 
@@ -80,6 +84,10 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
+        // Security in place for regular users to not be able to access edit page
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('books.index')->with('error', 'Access denied. >:(');
+        }
         return view('movies.edit', compact('movie'));
     }
 

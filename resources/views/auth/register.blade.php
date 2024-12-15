@@ -9,6 +9,19 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <!-- Dropdown for User/Admin selection -->
+        
+        <div>
+            <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+            <select name="role" id="role" class="mt-1 block w-full" required>
+                <option value="user" selected>User</option>
+                <option value="admin">Admin</option>
+            </select>
+            @error('role')
+                <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+            @enderror
+        </div>    
+
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
