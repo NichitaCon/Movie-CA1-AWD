@@ -37,7 +37,7 @@ class MovieController extends Controller
         //Validate input
         $request->validate([
             'name' => 'required',
-            'description' => 'required|max:500',
+            'description' => 'required|max:255',
             'pg_rating' => 'required',
             'rating' => 'required|numeric',
             'budget' => 'required|integer',
@@ -99,7 +99,7 @@ class MovieController extends Controller
         // Validate the incoming request
         $request->validate([
             'name' => 'required|max:30',
-            'description' => 'required|max:500',
+            'description' => 'required|max:255',
             'pg_rating' => 'required',
             'rating' => 'required|numeric|min:0|max:5',
             'budget' => 'required|integer',
