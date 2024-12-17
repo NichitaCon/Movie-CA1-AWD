@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProdCompanyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,11 @@ Route::get('/movies/{movie}/edit', [MovieController::class, 'edit'])->name('movi
 Route::put('movies/{movie}', [MovieController::class, 'update'])->name('movies.update');
 Route::post('/movies', [MovieController::class, 'store'])->name('movies.store');
 Route::delete('/movies/{movie}', [MovieController::class, 'destroy'])->name('movies.destroy');
+
+// ::resource creates all standart routes for prodcompanies
+Route::resource('prodcompanies', ProdCompanyController::class);
+
+// This custom POST route allows you to create a production company tied to a specific movie
+Route::post('movies/{movie}/prodcompanies', [ProdCompanyController::class, 'store'])->name('prodcompanies.store');
 
 require __DIR__.'/auth.php';

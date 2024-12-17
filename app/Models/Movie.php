@@ -19,4 +19,9 @@ class Movie extends Model
         'running_time',
         'image_id',
     ];
+
+    public function prodcompanies()
+    {
+        return $this->hasMany(ProdCompany::class);
+    }
 }

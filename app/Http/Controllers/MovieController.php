@@ -76,7 +76,10 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        return view('movies.show')->with('movie', $movie);
+        // Loading in the associated Production Company
+        $movie->load('prodcompanies');
+        // Return view send the data to the view for display
+        return view('movies.show', compact('movie'));
     }
 
     /**
