@@ -9,6 +9,12 @@
         {{ session('success') }}
     </x-alert-success>
 
+    @if(session('error'))
+        <div class="mb-4 px-4 py-2 bg-red-100 border-red-500 text-red-700 rounded-md">
+            {{ session('error') }}
+        </div>
+    @endif
+
     <div class="py-12">
         <div class="w-6/6 mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
