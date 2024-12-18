@@ -31,8 +31,8 @@ class ProdCompanyController extends Controller
     {
         // Validate the incoming request data
         $request->validate([
-            'name' => 'required|string',
-            'company_value' => 'required|integer|min:1',
+            'name' => 'required|string|max:25',
+            'company_value' => 'required|integer|min:1|max:20000',
         ]);
 
         // Create a new ProdCompany and associate it with the specified movie
