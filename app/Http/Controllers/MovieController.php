@@ -99,6 +99,12 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+
+        // Admin authorisation
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('movies.index')->with('error', 'Access denied. >:(');
+        }
+
         // Validate the incoming request
         $request->validate([
             'name' => 'required|max:30',

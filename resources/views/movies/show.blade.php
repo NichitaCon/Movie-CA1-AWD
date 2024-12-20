@@ -33,6 +33,26 @@
                                 @foreach($movie->prodcompanies as $prodCompany)
                                     <li class="text-gray-700">
                                         <strong>{{ $prodCompany->name }}</strong> - ${{ $prodCompany->company_value }} million
+
+                                        <!-- admin can delete/edit prodcompanies -->
+                                        @if (auth()->user()->role === 'admin')
+                                            <div class="mt-4 flex w-full justify-start space-x-2 mt-auto">
+
+                                                <!-- Edit button -->
+                                                <a href="{{ route('prodcompanies.edit', $prodCompany) }}" title="Edit" class="w-10 h-10 rounded-full flex items-center justify-center bg-orange-100 hover:bg-orange-400 border border-orange-200 hover:border-orange-400 transform hover:rotate-[-15deg] transition duration-300 ">
+                                                    <i class="fa-solid fa-pencil"></i>
+                                                </a>
+                                                
+                                                <!-- Delete button -->
+                                                <form action="{{ route('prodcompanies.edit', $prodCompany) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this production company?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" title="Delete" class="w-10 h-10 rounded-full flex items-center justify-center bg-red-100 hover:bg-red-400 border border-red-200 hover:border-red-400 transform hover:rotate-[15deg] transition duration-300 ">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @endif
                                     </li>
                                 @endforeach
                             </ul>

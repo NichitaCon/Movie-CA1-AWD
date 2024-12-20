@@ -59,7 +59,11 @@ class ProdCompanyController extends Controller
      */
     public function edit(ProdCompany $prodCompany)
     {
-        //
+        // Security in place for regular users to not be able to edit production companies
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('movies.index')->with('error', 'Access denied. >:(');
+        }
+        return view('prodcompany.edit', compact('prodCompany'));
     }
 
     /**
@@ -67,7 +71,24 @@ class ProdCompanyController extends Controller
      */
     public function update(Request $request, ProdCompany $prodCompany)
     {
-        //
+
+        //Ensuring user is authourised
+        if (auth()->user()->role !== 'admin') {
+            return redirect()->route('movies.index')->with('error', 'Access denied. >:(');
+        }
+
+        // Validate the incoming request
+        $request->validate([
+            'name' => 'required|string|max:25',
+            'company_value' => 'required|integer|min:1|max:20000',
+        ]);
+
+        // Update the production company with validated data
+        $prodCompany->update($request->only(['name', 'company_value']));
+
+        // Redirect to the associated movie's page or another relevant route
+        return redirect()->route('movies.show', $prodCompany->movie_id)
+                ->with('success', 'Production company updated successfully!');
     }
 
     /**
