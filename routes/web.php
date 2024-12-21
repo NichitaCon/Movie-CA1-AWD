@@ -33,4 +33,8 @@ Route::resource('prodcompanies', ProdCompanyController::class);
 // This custom POST route allows you to create a production company tied to a specific movie
 Route::post('movies/{movie}/prodcompanies', [ProdCompanyController::class, 'store'])->name('prodcompanies.store');
 
+// Attempting Custom route for ProdCompany edit
+// Route::put('movies/{movie}/prodcompanies/{prodCompany}', [ProdCompanyController::class, 'update'])->name('prodcompanies.update');
+// Route::get('movies/{movie}/prodcompanies/{prodCompany}/edit', [ProdCompanyController::class, 'edit'])->name('prodcompanies.edit');
+
 require __DIR__.'/auth.php';

@@ -59,7 +59,7 @@ class ProdCompanyController extends Controller
      */
     public function edit(ProdCompany $prodCompany)
     {
-        //
+        return view('prodcompanies.edit', compact('prodCompany'));
     }
 
     /**
@@ -67,14 +67,25 @@ class ProdCompanyController extends Controller
      */
     public function update(Request $request, ProdCompany $prodCompany)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:25',
+            'company_value' => 'required|integer|min:1|max:20000',
+        ]);
+    
+        // Update the prodCompany with the request data
+        $prodCompany->update($request->only(['name', 'company_value']));
+    
+        // Redirect back to the movie page (or wherever you want)
+        return redirect()->route('movies.show', $prodCompany->movie_id)
+            ->with('success', 'Production company updated successfully!');
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(ProdCompany $prodCompany)
     {
-        //
+        $prodCompany->delete();
+
+        return redirect()->back()->with('success', 'Production company deleted successfully!');
     }
 }
