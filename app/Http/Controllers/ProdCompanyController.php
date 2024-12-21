@@ -63,7 +63,14 @@ class ProdCompanyController extends Controller
         if (auth()->user()->role !== 'admin') {
             return redirect()->route('movies.index')->with('error', 'Access denied. >:(');
         }
-        return view('prodcompany.edit', compact('prodCompany'));
+
+        // Debugging:
+        // dd(request()->route('prodcompany'), $prodCompany);
+        // $prodCompany = ProdCompany::findOrFail(1);
+        // dd($prodCompany);
+
+        // Pass the prodCompany to the view
+        return view('prodcompanies.edit', compact('prodCompany'));
     }
 
     /**

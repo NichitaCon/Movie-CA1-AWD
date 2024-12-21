@@ -44,7 +44,7 @@
                                                 </a>
                                                 
                                                 <!-- Delete button -->
-                                                <form action="{{ route('prodcompanies.edit', $prodCompany) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this production company?');">
+                                                <form action="{{ route('prodcompanies.destroy', $prodCompany) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this production company?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" title="Delete" class="w-10 h-10 rounded-full flex items-center justify-center bg-red-100 hover:bg-red-400 border border-red-200 hover:border-red-400 transform hover:rotate-[15deg] transition duration-300 ">
